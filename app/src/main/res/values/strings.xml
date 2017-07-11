@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Juniper</string>
+    <string name="text_utilities">Utilities</string>
+    <string name="text_news">News</string>
+    <string name="movies_fragment">Movies Fragment</string>
+    <string name="news_fragment">News Fragment</string>
+</resources>
