@@ -1,3 +1,5 @@
+@file:JvmName("ExtensionUtils")
+
 package com.greenbot.juniper.utils
 
 import android.content.Context
@@ -5,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.greenbot.juniper.R
@@ -35,3 +38,8 @@ fun AppCompatActivity.addFragemnt(containerId: Int, fragment: Fragment) {
             .commit()
 
 }
+
+fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false) =
+        with(this) {
+            LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
+        }
