@@ -6,11 +6,14 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.greenbot.juniper.R
+import com.squareup.picasso.Picasso
 
 /**
  * Created by gaurav on 9/7/17.
@@ -43,3 +46,13 @@ fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false) =
         with(this) {
             LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
         }
+
+fun ImageView.loadUrl(imageUrl: String) {
+
+    if (TextUtils.isEmpty(imageUrl)) {
+        Picasso.with(context).load(R.mipmap.ic_launcher).into(this)
+    } else {
+        Picasso.with(context).load(imageUrl).into(this)
+    }
+
+}

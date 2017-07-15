@@ -5,7 +5,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -29,10 +29,10 @@ class NewsPresenterImpl @Inject constructor(newsView: NewsView, newsApiService: 
                 .doOnSubscribe { newsView.showLoading() }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .doOnNext { newsView.onNewsLoaded() }
+                .doOnSuccess { newsView.onNewsLoaded(it.articles) }
                 .doOnError(Consumer { newsView.showError() })
-                .subscribe { Timber.d("result received", it.articles) })
-
+                .timeout(5000, TimeUnit.MILLISECONDS)
+                .subscribe())
 
     }
 

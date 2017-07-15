@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.greenbot.juniper.R
+import com.greenbot.juniper.domain.model.NewsArticle
 import com.greenbot.juniper.utils.inflate
 import com.greenbot.juniper.utils.showToast
 import dagger.android.support.AndroidSupportInjection
@@ -17,14 +18,14 @@ import javax.inject.Inject
 /**
  * Created by gaurav on 8/7/17.
  */
-class NewsFragment : Fragment(), NewsView {
-
+class NewsFragment : Fragment(), NewsView, NewsDelegateAdapter.onViewSelectedListener {
 
     @Inject
     lateinit var newsPresenter: NewsPresenter
 
     private val newsList by lazy {
         news_list.setHasFixedSize(true)
+        news_list.adapter = NewsListAdapter(this)
         news_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         news_list
     }
@@ -44,10 +45,10 @@ class NewsFragment : Fragment(), NewsView {
         context.showToast("load news called")
     }
 
-    override fun onNewsLoaded() {
+    override fun onNewsLoaded(articles: List<NewsArticle>) {
         newsList.visibility = View.VISIBLE
         progressBar.visibility = View.GONE
-
+        (newsList.adapter as NewsListAdapter).addItem(articles)
     }
 
     override fun showLoading() {
@@ -57,6 +58,10 @@ class NewsFragment : Fragment(), NewsView {
 
     override fun showError() {
         context.showToast("error on loading")
+    }
+
+    override fun onClicked() {
+
     }
 
     override fun onDestroyView() {
