@@ -1,9 +1,12 @@
 package com.greenbot.juniper.injection
 
+import android.arch.persistence.room.Room
+import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.greenbot.juniper.MyApplication
+import com.greenbot.juniper.domain.data.AppDatabase
 import com.greenbot.juniper.ui.home.MainActivityComponent
 import dagger.Module
 import dagger.Provides
@@ -26,6 +29,13 @@ class AppModule {
     @Singleton
     fun provideContext(app: MyApplication): Context {
         return app.applicationContext
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(context: Context): AppDatabase {
+        return Room.databaseBuilder(context,
+                AppDatabase::class.java, "myApp-db").build()
     }
 
     @Provides

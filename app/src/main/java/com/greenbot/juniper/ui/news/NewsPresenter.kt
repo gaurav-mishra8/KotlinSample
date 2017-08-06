@@ -8,4 +8,5 @@ interface NewsPresenter {
     fun loadNews()
 
     fun onDetach()
+    fun storeNews()
 }

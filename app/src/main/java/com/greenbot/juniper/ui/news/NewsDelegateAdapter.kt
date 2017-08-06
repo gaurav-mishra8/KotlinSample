@@ -17,13 +17,17 @@ import kotlinx.android.synthetic.main.item_news_list.view.*
 class NewsDelegateAdapter(val listener: onViewSelectedListener) : ViewTypeDelegateAdapter {
 
     interface onViewSelectedListener {
-        fun onClicked()
+        fun onClicked(pos: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
 
         val view = parent?.inflate(R.layout.item_news_list)
-        return NewsViewHolder(view)
+        val newsHolder = NewsViewHolder(view)
+        view?.setOnClickListener {
+            listener.onClicked(newsHolder.adapterPosition)
+        }
+        return newsHolder
 
     }
 
@@ -37,12 +41,10 @@ class NewsDelegateAdapter(val listener: onViewSelectedListener) : ViewTypeDelega
         fun bind(item: NewsArticle) {
 
             with(itemView) {
-                tv_desc.text = item.desc
+                tv_title.text = item.title
                 tv_author.text = item.author
                 img_news.loadUrl(item.imageUrl)
                 tv_published_at.text = item.publishedAt
-
-                itemView.setOnClickListener { listener.onClicked() }
             }
 
         }

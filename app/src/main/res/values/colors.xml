@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="grey_ebebeb">#ebebeb</color>
+    <color name="shimmer_background_color">#b1b1b1</color>
+    <color name="grey">#808080</color>
 </resources>

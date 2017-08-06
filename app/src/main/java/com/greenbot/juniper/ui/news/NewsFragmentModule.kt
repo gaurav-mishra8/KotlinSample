@@ -1,6 +1,7 @@
 package com.greenbot.juniper.ui.news
 
 import com.greenbot.juniper.domain.api.NewsApiService
+import com.greenbot.juniper.domain.data.AppDatabase
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -18,13 +19,18 @@ class NewsFragmentModule {
     }
 
     @Provides
-    fun provideNewsPresenter(newsView: NewsView, newsApiService: NewsApiService): NewsPresenter {
-        return NewsPresenterImpl(newsView, newsApiService)
+    fun provideNewsPresenter(newsView: NewsView, newsApiService: NewsApiService, newsRepo: NewsRepository): NewsPresenter {
+        return NewsPresenterImpl(newsView, newsApiService, newsRepo)
     }
 
     @Provides
     fun providesNewsService(@Named("NewsApi") retrofit: Retrofit): NewsApiService {
         return retrofit.create(NewsApiService::class.java)
+    }
+
+    @Provides
+    fun provideNewsRepo(appDatabase: AppDatabase): NewsRepository {
+        return NewsRepository(appDatabase)
     }
 
 }

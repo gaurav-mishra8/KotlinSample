@@ -7,13 +7,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import com.greenbot.juniper.R
 import com.greenbot.juniper.domain.model.NewsArticle
 import com.greenbot.juniper.utils.inflate
 import com.greenbot.juniper.utils.showToast
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_news.*
+import timber.log.Timber
 import javax.inject.Inject
+
 
 /**
  * Created by gaurav on 8/7/17.
@@ -42,13 +45,15 @@ class NewsFragment : Fragment(), NewsView, NewsDelegateAdapter.onViewSelectedLis
     override fun onStart() {
         super.onStart()
         newsPresenter.loadNews()
-        context.showToast("load news called")
+        Timber.d("load news called ")
+        newsPresenter.storeNews()
     }
 
     override fun onNewsLoaded(articles: List<NewsArticle>) {
-        newsList.visibility = View.VISIBLE
         progressBar.visibility = View.GONE
+        newsList.visibility = View.VISIBLE
         (newsList.adapter as NewsListAdapter).addItem(articles)
+        runLayoutAnimation()
     }
 
     override fun showLoading() {
@@ -56,12 +61,21 @@ class NewsFragment : Fragment(), NewsView, NewsDelegateAdapter.onViewSelectedLis
         progressBar.visibility = View.VISIBLE
     }
 
+    private fun runLayoutAnimation() {
+
+        val controller = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_from_bottom)
+
+        newsList.layoutAnimation = controller
+        newsList.adapter.notifyDataSetChanged()
+        newsList.scheduleLayoutAnimation()
+    }
+
     override fun showError() {
         context.showToast("error on loading")
     }
 
-    override fun onClicked() {
-
+    override fun onClicked(pos: Int) {
+        Timber.d("onClicked " + (newsList.adapter as NewsListAdapter).getItem(pos).title)
     }
 
     override fun onDestroyView() {

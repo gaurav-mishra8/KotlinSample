@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Juniper.iml" filepath="$PROJECT_DIR$/Juniper.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shimmerlayout/shimmerlayout.iml" filepath="$PROJECT_DIR$/shimmerlayout/shimmerlayout.iml" />
     </modules>
   </component>
 </project>

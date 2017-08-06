@@ -4,10 +4,9 @@ import android.support.v4.util.SparseArrayCompat
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.greenbot.juniper.domain.model.NewsArticle
-import com.greenbot.juniper.domain.model.NewsArticleResponse
 import com.greenbot.juniper.ui.ViewType
 import com.greenbot.juniper.ui.ViewTypeDelegateAdapter
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by gaurav on 12/7/17.
@@ -25,6 +24,10 @@ class NewsListAdapter(listener: NewsDelegateAdapter.onViewSelectedListener) : Re
         delegateAdapters.put(ViewType.LIST_ITEM, NewsDelegateAdapter(listener))
         items = ArrayList()
         items.add(loadingItem)
+    }
+
+    fun getItem(pos: Int): NewsArticle {
+        return items.get(pos) as NewsArticle
     }
 
 
