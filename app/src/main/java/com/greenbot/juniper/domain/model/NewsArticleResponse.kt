@@ -8,5 +8,6 @@ import com.google.gson.annotations.SerializedName
 data class NewsArticleResponse(@SerializedName("source") val source: String,
                                @SerializedName("status") val status: String,
                                @SerializedName("sortBy") val sortBy: String,
-                               @SerializedName("articles") val articles: List<NewsArticle>) {
-}
+                               @SerializedName("articles") val articles: List<NewsArticle>)
+
+

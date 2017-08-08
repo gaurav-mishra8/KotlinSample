@@ -4,6 +4,8 @@ import com.greenbot.juniper.domain.api.NewsApiService
 import com.greenbot.juniper.domain.data.AppDatabase
 import dagger.Module
 import dagger.Provides
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import javax.inject.Named
 
@@ -20,7 +22,7 @@ class NewsFragmentModule {
 
     @Provides
     fun provideNewsPresenter(newsView: NewsView, newsApiService: NewsApiService, newsRepo: NewsRepository): NewsPresenter {
-        return NewsPresenterImpl(newsView, newsApiService, newsRepo)
+        return NewsPresenterImpl(newsView, newsApiService, newsRepo, AndroidSchedulers.mainThread(), Schedulers.io())
     }
 
     @Provides
