@@ -1,1 +1,2 @@
 # KotlinSample
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5989e674be66a70001373ed4&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5989e674be66a70001373ed4/build/latest?branch=master)
