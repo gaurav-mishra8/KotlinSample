@@ -6,4 +6,11 @@
     <color name="grey_ebebeb">#ebebeb</color>
     <color name="shimmer_background_color">#b1b1b1</color>
     <color name="grey">#808080</color>
+
+
+    <color name="rainbow_red">#FF0000</color>
+    <color name="rainbow_yellow">#FFFF00</color>
+    <color name="rainbow_green">#00FF00</color>
+    <color name="rainbow_blue">#0000FF</color>
+    <color name="rainbow_purple">#9400D3</color>
 </resources>

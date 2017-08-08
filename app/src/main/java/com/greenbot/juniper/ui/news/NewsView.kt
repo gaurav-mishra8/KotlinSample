@@ -11,5 +11,5 @@ interface NewsView {
 
     fun showLoading()
 
-    fun showError()
+    fun showError(msg:String?)
 }

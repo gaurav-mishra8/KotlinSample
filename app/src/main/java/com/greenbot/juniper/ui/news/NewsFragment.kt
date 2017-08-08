@@ -70,8 +70,9 @@ class NewsFragment : Fragment(), NewsView, NewsDelegateAdapter.onViewSelectedLis
         newsList.scheduleLayoutAnimation()
     }
 
-    override fun showError() {
-        context.showToast("error on loading")
+    override fun showError(msg: String?) {
+        progressBar.visibility = View.GONE
+        context.showToast("error on loading " + msg)
     }
 
     override fun onClicked(pos: Int) {

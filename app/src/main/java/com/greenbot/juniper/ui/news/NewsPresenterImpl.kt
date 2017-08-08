@@ -34,11 +34,7 @@ class NewsPresenterImpl @Inject constructor(newsView: NewsView, newsApiService: 
         compositeDisposable?.add(newsApiService.getNewsList("techCrunch")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { it: Disposable -> newsView.showLoading() }
-                .doOnSuccess { it: NewsArticleResponse -> newsView.onNewsLoaded(it.articles) }
-                .doOnError(Consumer { it: Throwable -> newsView.showError() })
-                .timeout(5000, TimeUnit.MILLISECONDS)
-                .subscribe())
+                .subscribe(Consumer { newsView.onNewsLoaded(it.articles) }, Consumer { newsView.showError(it.message) }))
 
     }
 
