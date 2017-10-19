@@ -3,11 +3,14 @@ package com.greenbot.juniper.ui.home
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
 import com.greenbot.juniper.R
 import com.greenbot.juniper.utils.setupActionBar
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasDispatchingSupportFragmentInjector
+import io.reactivex.Observable
+import io.reactivex.ObservableSource
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -17,6 +20,8 @@ class MainActivity : AppCompatActivity(), HasDispatchingSupportFragmentInjector 
     @Inject
     lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
+
+    lateinit var textLabel: TextView
 
     override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {
         return fragmentDispatchingAndroidInjector

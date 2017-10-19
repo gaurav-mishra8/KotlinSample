@@ -8,13 +8,13 @@ import io.supercharge.shimmerlayout.ShimmerLayout
 /**
  * Created by gaurav on 22/7/17.
  */
-class DummyActivity:AppCompatActivity() {
+class DummyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dummy_shimmer_screen)
 
-        val shimmerLayout = findViewById(R.id.shimmer_layout) as ShimmerLayout
+        val shimmerLayout: ShimmerLayout = findViewById<ShimmerLayout>(R.id.shimmer_layout)
         shimmerLayout.startShimmerAnimation()
     }
 }

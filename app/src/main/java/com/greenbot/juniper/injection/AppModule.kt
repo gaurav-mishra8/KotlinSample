@@ -5,9 +5,11 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import android.support.test.espresso.IdlingRegistry
 import com.greenbot.juniper.MyApplication
 import com.greenbot.juniper.domain.data.AppDatabase
 import com.greenbot.juniper.ui.home.MainActivityComponent
+import com.jakewharton.espresso.OkHttp3IdlingResource
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -83,9 +85,14 @@ class AppModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(logging: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient.Builder()
+        val okhttpClient = OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .build()
+
+        IdlingRegistry.getInstance().register(OkHttp3IdlingResource.create("okhttp",okhttpClient));
+
+        return okhttpClient
+
     }
 
 }

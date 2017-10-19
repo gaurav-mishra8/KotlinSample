@@ -19,8 +19,6 @@ import android.view.animation.DecelerateInterpolator
  */
 class TestCustomView(context: Context?) : View(context) {
 
-    constructor(context: Context?, attributeSet: AttributeSet) : this(context)
-
     var paint: Paint
     var linePaint: Paint
     var textPaint: TextPaint
